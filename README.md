@@ -1,4 +1,4 @@
-# CTicTacToe-UI
+# Number Connect
 
 - [Explanation](#explanation)
     - [Game Logic](#game-logic)
