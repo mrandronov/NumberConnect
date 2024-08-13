@@ -1,4 +1,9 @@
 # Number Connect
+---
+
+| Ignore below readme for now.
+
+---
 
 - [Explanation](#explanation)
     - [Game Logic](#game-logic)
