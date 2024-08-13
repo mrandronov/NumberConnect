@@ -13,6 +13,7 @@ typedef struct cnctr_link_t
         int             start_y;
         int             end_x;
         int             end_y;
+        Cell*           cell;
 
         void            ( *render )( struct cnctr_link_t* );
         void            ( *destroy )( struct cnctr_link_t* );

@@ -24,6 +24,7 @@ cnctr_link_draw( Connector_Link* self )
 void
 cnctr_link_destroy( Connector_Link* self )
 {
+        self->cell = NULL; // Destroyed by board.
         free( self );
         self = NULL;
 }
@@ -37,6 +38,7 @@ cnctr_link_create( Cell* current_cell )
         link->start_y = current_cell->box.y + ( current_cell->box.h / 2 );
         link->end_x = config->mouse_x;
         link->end_y = config->mouse_y;
+        link->cell = current_cell;
 
         link->render = cnctr_link_draw; 
         link->destroy = cnctr_link_destroy; 
@@ -82,6 +84,7 @@ cnctr_chain_draw( Connector_Chain* self )
                         p->link->end_x = config->mouse_x;
                         p->link->end_y = config->mouse_y;
                 }
+
                 p->link->render( p->link );
                 p = p->next;
         }
@@ -113,6 +116,12 @@ is_cell_visited( Connector_Chain* self, Cell* cell )
                 }
         }
         return false;
+}
+
+bool
+is_same_cell_pos( Cell* cell, Board_Pos *pos )
+{
+        return ( cell->row == pos->row ) && ( cell->col == pos->col );
 }
 
 void
@@ -234,6 +243,27 @@ cnctr_chain_is_next_nghbr( Connector_Chain* self )
                 return;
         }
 
+        // Skip adding new_cell if it has already been visited in the chain
+        // but only if it was not the previous one. If it is, then we move
+        // the chain back one link to that previous cell.
+        if ( is_cell_visited( self, new_cell ) )
+        {
+                Board_Pos*              prev = &self->visited[ self->length - 2 ];
+                if ( is_same_cell_pos( current_cell, prev ) )
+                {
+                        return;
+                }
+
+                if ( is_same_cell_pos( new_cell, prev ) )
+                {
+                        self->total -= num_set[ self->head->link->cell->tile->index ]; // uh oh
+                        self->remove_link( self );
+                        current_cell = self->tail->link->cell;
+                }
+
+                return;
+        }
+
         // Complicated logic to say true if new_cell value is same as current cell OR
         // the length of the chain is > 1 AND new_cell value is double the current cell.
         bool            connectable = ( new_cell->tile->index == current_cell->tile->index );
@@ -244,8 +274,7 @@ cnctr_chain_is_next_nghbr( Connector_Chain* self )
                 return;
         }
 
-        // Skip adding new_cell if it has already been visited in the chain
-        if ( new_cell == NULL || is_cell_visited( self, new_cell ) )
+        if ( !new_cell )
         {
                 return;
         }
@@ -272,6 +301,7 @@ void
 cnctr_chain_add_link( Connector_Chain* self, Cell* cell )
 {
         assert_msg( ( cell == NULL ), "Adding NULL cell to new chain link." );
+
         Chain_Node* node = chain_node_create( cnctr_link_create( cell ), NULL, NULL );
 
         // Update the chain's visited array
@@ -295,7 +325,7 @@ cnctr_chain_add_link( Connector_Chain* self, Cell* cell )
                 p = p->next;
         }
 
-        p->next = node; 
+        p->next = node;
         node->prev = p;
         self->tail = node;
 
@@ -318,11 +348,11 @@ cnctr_chain_remove_link( Connector_Chain* self )
         }
         else
         {
-                Chain_Node*             temp = self->tail;
+                Chain_Node*             temp = self->tail->prev;
+                chain_node_destroy( self->tail );
 
-                self->tail = self->tail->prev;
+                self->tail = temp;
                 self->tail->next = NULL;
-                chain_node_destroy( temp );
         }
 
         self->length--;

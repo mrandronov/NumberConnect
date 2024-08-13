@@ -117,6 +117,13 @@ handle_events( )
                                 // Clear the tiles
                                 chain->clear_tiles( chain );
                         }
+                        else
+                        {
+                                chain->clear( chain );
+                                chain->total = 0;
+                                chain->enabled = false;
+                                return;
+                        }
                         chain->clear( chain );
 
                         // Add new tile to the board, where the chain head was.
