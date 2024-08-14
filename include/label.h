@@ -11,10 +11,12 @@ typedef struct _label_t
     SDL_Texture*        texture; 
     SDL_Rect            rect;
     SDL_Color           color;
+    int                 size;
 
     void                ( *render )( struct _label_t* self );
-    void                ( *destroy )( struct _label_t* self );
     void                ( *center )( struct _label_t* self, SDL_Rect* box );
+    void                ( *update )( struct _label_t* self, const char* str );
+    void                ( *destroy )( struct _label_t* self );
 } label_t;
 
 label_t*        label_create( const char* str, int x, int y, int size, SDL_Color* color );

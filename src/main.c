@@ -9,6 +9,7 @@
 #include "SDL2/SDL_image.h"
 
 #include "SDL_mouse.h"
+#include "SDL_video.h"
 #include "connector.h"
 #include "error.h"
 #include "color.h"
@@ -34,6 +35,7 @@ config_t*               config;
 /* Debug */
 Connector_Chain*        chain;
 Board*                  board;
+label_t*                score;
 
 void
 clean_up()
@@ -135,6 +137,14 @@ handle_events( )
 
                         // Update the cells with new tiles;
                         board->trickle_down( board );
+
+                        // Update the score meter
+                        int size = snprintf( NULL, 0, "Score: %d", config->playerScore );
+                        char*   str = ( char* ) malloc( sizeof( char ) * ( size + 1 ) );
+
+                        snprintf( str, size + 1, "Score: %d", config->playerScore );
+
+                        score->update( score, str );
                 }
         }
 }
@@ -160,7 +170,7 @@ init()
 	                                        SDL_WINDOWPOS_UNDEFINED, 
 	                                        SCREEN_WIDTH, 
 	                                        SCREEN_HEIGHT, 
-	                                        SDL_WINDOW_SHOWN );
+	                                        SDL_WINDOW_SHOWN & SDL_WINDOW_ALLOW_HIGHDPI );
         
         assert_msg( ( window == NULL ), SDL_GetError() );
 
@@ -186,6 +196,8 @@ init()
 
         board = cell_board_create();
         chain = cnctr_chain_create();
+
+        score = label_create( "Score: 0", 175, 60, 48, &white ); 
 }
 
 void
@@ -193,6 +205,7 @@ draw_all_components()
 {
         chain->render( chain );
         board->render( board );
+        score->render( score );
 }
 
 int
