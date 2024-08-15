@@ -6,7 +6,6 @@
 
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_ttf.h"
-#include "SDL2/SDL_image.h"
 
 #include "SDL_mouse.h"
 #include "SDL_video.h"
@@ -28,11 +27,9 @@ uint64_t                end;
 float                   delta;
 
 char*                   theme_path = "./themes/Default.th";
-char*                   line_text_path = "./red_line.png";
 
 config_t*               config;
 
-/* Debug */
 Connector_Chain*        chain;
 Board*                  board;
 label_t*                score;
@@ -40,9 +37,6 @@ label_t*                score;
 void
 clean_up()
 {
-        /* SDL_DestroyTexture( config->line_texture ); */
-        /* config->line_texture = NULL; */
-
         SDL_DestroyRenderer( config->renderer );
         config->renderer = NULL;
 
@@ -150,17 +144,6 @@ handle_events( )
 }
 
 void
-loadTexture( const char* path )
-{
-        config->line_texture = IMG_LoadTexture( config->renderer, path );
-        if ( config->line_texture == NULL )
-        {
-                printf( "Unable to create texture from %s! SDL_image error: %s\n", path, IMG_GetError() );
-                exit( 1 );
-        }
-}
-
-void
 init()
 {
         assert_msg( ( SDL_Init( SDL_INIT_VIDEO ) != 0 ), SDL_GetError() );
@@ -186,9 +169,6 @@ init()
         config->window = window;
         config->renderer = renderer;
 
-        /* loadTexture( line_text_path ); */
-        /* assert_msg( ( ( IMG_Init( IMG_INIT_PNG ) & IMG_INIT_PNG ) == 0 ), IMG_GetError() ); */
-
         color_init( theme_path );
 
         num_set_init();
@@ -196,7 +176,6 @@ init()
 
         board = cell_board_create();
         chain = cnctr_chain_create();
-
         score = label_create( "Score: 0", 175, 60, 48, &white ); 
 }
 
@@ -212,7 +191,6 @@ int
 main( int argc, char* argv[] )
 {
         srand(time(NULL));
-
         init();
 
         while ( config->is_game_running == true )
