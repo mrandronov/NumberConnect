@@ -1,27 +1,18 @@
 #ifndef __LIB_CONFIG_H__
 #define __LIB_CONFIG_H__
 
+#include <stdbool.h>
+
 #include "SDL_render.h"
 #include "SDL_video.h"
 
-#include "game/game.h"
-
 typedef struct
 {
-        char                    playerMarker;
-        char                    computerMarker;
-        enum computer_type_t    computerType;
-        int                     playerScore;
-        int                     computerScore;
-        game_t*                 game;
-
-        char*                   font_path;
-
-        bool                    is_game_ongoing;
         bool                    is_game_running;
+        int                     playerScore;
+        char*                   font_path;
         SDL_Window*             window;
         SDL_Renderer*           renderer;
-        SDL_Texture*            line_texture;
 
         int                     mouse_x;
         int                     mouse_y;

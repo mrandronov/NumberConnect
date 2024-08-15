@@ -2,7 +2,6 @@
 #include "color.h"
 #include "selector.h"
 #include "mouse.h"
-#include "label.h"
 
 int             selector_index;
 selector_t**    selector_list;
@@ -26,8 +25,6 @@ o_marker_select( selector_t* s )
         marker_unselect( x_marker_toggle );
         s->is_selected = 1;
 
-        config->playerMarker = 'O';
-        config->computerMarker = 'X';
 
         return 0;
 }
@@ -38,8 +35,6 @@ x_marker_select( selector_t* s )
         marker_unselect( o_marker_toggle );
         s->is_selected = 1;
 
-        config->playerMarker = 'X';
-        config->computerMarker = 'O';
 
         return 0;
 }
@@ -57,7 +52,6 @@ smart_style_select( selector_t* s )
         style_unselect( rand_style_toggle );
         s->is_selected = 1;
         
-        config->computerType = SMART;
 
         return 0;
 }
@@ -68,7 +62,6 @@ rand_style_select( selector_t* s )
         style_unselect( smart_style_toggle );
         s->is_selected = 1;
 
-        config->computerType = RANDOM;
 
         return 0;
 }
