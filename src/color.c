@@ -43,8 +43,8 @@ char** theme;
 int
 load_theme( char* theme_path )
 {
-        int             ret;
-        FILE*           fptr;
+        int             ret = 0;
+        FILE*           fptr = NULL;
 
         fptr = fopen( theme_path, "r" );
 

@@ -10,8 +10,8 @@ typedef struct
 {
         bool                    is_game_running;
         int                     playerScore;
+        char*                   theme_path;
         char*                   font_path;
-        SDL_Window*             window;
         SDL_Renderer*           renderer;
 
         int                     mouse_x;

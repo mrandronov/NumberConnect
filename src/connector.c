@@ -8,12 +8,6 @@
 void
 cnctr_link_draw( Connector_Link* self )
 {
-        set_color( select_color );
-
-        /* SDL_RenderDrawLine( config->renderer,  */
-                        /* self->start_x, self->start_y, */
-                        /* self->end_x, self->end_y ); */
-
         thickLineRGBA( config->renderer,
                         self->start_x, self->start_y,
                         self->end_x, self->end_y,
@@ -145,8 +139,6 @@ cnctr_chain_is_next_nghbr( Connector_Chain* self )
         theta *= -180 / M_PI;
 
         double          distance = sqrt( pow( dx, 2 ) + pow( dy, 2 ) );
-
-        /* printf( "ø = %f | ∆ = %f\n", theta, distance ); */
 
         if ( distance <= 65.0f )
         {

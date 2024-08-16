@@ -5,6 +5,7 @@
 
 #include "config.h"
 #include "label.h"
+#include "animate.h"
 
 #define NUM_LIMIT 32
 
@@ -17,12 +18,13 @@ typedef struct tile_t
         label_t*        label;
         SDL_Rect        box;
         SDL_Color       background_color;
+        Animation*      animation;
 
         void            ( *render )( struct tile_t* self );
         void            ( *destroy )( struct tile_t* self );
 } Tile;
 
-// Predefine all tiles and reuse throughout the game
+// Predefine all tiles and reuse them throughout the game
 Tile                    tile_set[ 32 ];
 
 int                     num_set_get_lowest_square( int value );

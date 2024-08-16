@@ -106,7 +106,6 @@ void
 cell_board_trickle_down( Board* self )
 {
         // First column only, for now.
-        int j = 0;
         for ( int j = 0; j < BOARD_WIDTH; j++ )
         {
                 while( true )
