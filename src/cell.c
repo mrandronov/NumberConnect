@@ -6,6 +6,11 @@
 void
 cell_draw( Cell* self )
 {
+        if ( self->animation != NULL )
+        {
+                self->animation->step( self->animation );
+        }
+
         set_color( *self->color );
         SDL_RenderFillRect( config->renderer, &self->box );
 
@@ -141,7 +146,14 @@ cell_board_trickle_down( Board* self )
                                 while( cur_empty >= 0 )
                                 {
                                         int             index = ( rand() % 6 ) + 0;
-                                        self->cells[ cur_empty ][ j ].tile = &tile_set[ index ];
+                                        Cell*           cur_cell = &self->cells[ cur_empty ][ j ];
+                                        float           end_y = cur_cell->box.y;
+
+                                        cur_cell->box.y -= 900;
+                                        cur_cell->animation = animation_create( &cur_cell->box, cur_cell->box.x, end_y, 0.5f );
+
+                                        cur_cell->tile = &tile_set[ index ];
+
                                         cur_empty--;
                                 }
 
@@ -151,6 +163,13 @@ cell_board_trickle_down( Board* self )
                         // Now move the full cell to the empty one.
                         self->cells[ cur_empty ][ j ].tile = self->cells[ next_full ][ j ].tile;
                         self->cells[ next_full ][ j ].tile = NULL;
+
+                        // And create the animation for it
+                        Cell*           cur_cell = &self->cells[ cur_empty ][ j ];
+                        float           end_y = cur_cell->box.y;
+
+                        cur_cell->box.y = self->cells[ next_full ][ j ].box.y;
+                        cur_cell->animation = animation_create( &cur_cell->box, cur_cell->box.x, end_y, 0.5f );
                 }
         }
 }

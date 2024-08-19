@@ -2,7 +2,7 @@
 #include "animate.h"
 
 bool
-is_dimension_done( int start, int end, float rate )
+is_dimension_done( float start, float end, float rate )
 {
         if ( rate <= 0 )
         {
@@ -18,6 +18,11 @@ get_rate( float start, float end, float time )
         float px_per_frame = 60.0f * time;
 
         float distance = ( end - start );
+
+        if ( distance == 0 )
+        {
+                return 0.0f;
+        }
 
         return distance / px_per_frame;
 }
@@ -36,7 +41,10 @@ animation_step( Animation* self )
         if ( is_dimension_done( self->box->x, self->end_x, self->rate_x ) &&
                         is_dimension_done(self->box->y, self->end_y, self->rate_y) )
         {
+                self->box->x = self->end_x;
+                self->box->y = self->end_y;
                 self->running = false;
+                return;
         }
 
         self->box->x = self->cur_x;
@@ -46,7 +54,6 @@ animation_step( Animation* self )
 void
 animation_destroy( Animation* self )
 {
-        self->box = NULL; // Freed by parent struct
         free( self );
         self = NULL;
 }
@@ -70,7 +77,7 @@ animation_create( SDL_Rect* box, float end_x, float end_y, float time )
         animation->box = box;
 
         animation->step = animation_step;
-        animation->step = animation_destroy;
+        animation->destroy = animation_destroy;
 
         return animation;
 }

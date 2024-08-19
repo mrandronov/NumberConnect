@@ -36,11 +36,6 @@ tile_draw( Tile* self )
         self->label->center( self->label, &self->box );
 
         self->label->render( self->label );
-
-        if ( self->animation )
-        {
-                self->animation->step( self->animation );
-        }
 }
 
 void

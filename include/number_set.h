@@ -5,7 +5,6 @@
 
 #include "config.h"
 #include "label.h"
-#include "animate.h"
 
 #define NUM_LIMIT 32
 
@@ -18,7 +17,6 @@ typedef struct tile_t
         label_t*        label;
         SDL_Rect        box;
         SDL_Color       background_color;
-        Animation*      animation;
 
         void            ( *render )( struct tile_t* self );
         void            ( *destroy )( struct tile_t* self );

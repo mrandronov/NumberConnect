@@ -5,6 +5,7 @@
 
 #include "config.h"
 #include "number_set.h"
+#include "animate.h"
 
 #define BOARD_WIDTH 5
 #define BOARD_HEIGHT 7
@@ -26,6 +27,7 @@ typedef struct cell_t
         SDL_Rect        box;
         SDL_Color       *color;
         Tile*           tile;
+        Animation*      animation;
 
         void            ( *render )( struct cell_t* );
         void            ( *get_center )( struct cell_t*, int* center_x, int* center_y );
