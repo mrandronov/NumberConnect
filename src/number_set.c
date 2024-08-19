@@ -69,6 +69,7 @@ void
 tile_set_init()
 {
         SDL_Color               text_color = hexToColor( "FDFFF7" );
+
         tile_set[ 0 ] = tile_init( 0, hexToColor( "F24C00" ), &text_color, 64 ); // 2
         tile_set[ 1 ] = tile_init( 1, hexToColor( "713E5A" ), &text_color, 64 ); // 4
         tile_set[ 2 ] = tile_init( 2, hexToColor( "F28123" ), &text_color, 64 ); // 8
@@ -80,5 +81,6 @@ tile_set_init()
         tile_set[ 8 ] = tile_init( 8, hexToColor( "07A0C3" ), &text_color, 48 ); // 512
         tile_set[ 9 ] = tile_init( 9, hexToColor( "086788" ), &text_color, 40 ); // 1024
         tile_set[ 10 ] = tile_init( 10, hexToColor( "4ECDC4" ), &text_color, 40 ); // 2048
+        tile_set[ 11 ] = tile_init( 11, hexToColor( "617073" ), &text_color, 40 ); // 4096
 }
 
