@@ -6,8 +6,16 @@
 #include "SDL_video.h"
 
 #include "config.h"
+#include "game_screen.h"
 
 config_t*               config;
+
+enum screen_type
+{
+        GAME,
+        MENU,
+        OPTIONS
+};
 
 typedef struct window_t
 {
@@ -20,6 +28,9 @@ typedef struct window_t
         uint64_t                start;
 
         SDL_Window*             window;
+
+        enum screen_type        current_screen;
+        Game_Screen*            game_screen;
 
         void                    ( *init )( struct window_t* self );
         void                    ( *handle_events )( struct window_t* self );
