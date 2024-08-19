@@ -191,7 +191,7 @@ cnctr_chain_is_next_nghbr( Connector_Chain* self )
         }
         else if ( 67.5 < theta && theta < 112.5 )
         {
-                /* printf( "Top cell.\n" ); */
+                /* Top cell */
                 if ( cur_row == 0 )
                 {
                         return;
@@ -211,7 +211,7 @@ cnctr_chain_is_next_nghbr( Connector_Chain* self )
         }
         else if ( ( -158.5 > theta || 158.5 < theta ) )
         {
-                /* printf( "Right cell.\n" ); */
+                /* Right cell */
                 if ( cur_col == 0 )
                 {
                         return;
@@ -220,6 +220,7 @@ cnctr_chain_is_next_nghbr( Connector_Chain* self )
         }
         else if ( 67.5 > theta && theta > 22.5 )
         {
+                /* Top Left cell */
                 if ( cur_col == BOARD_WIDTH - 1 ||
                                 cur_row == 0 )
                 {

@@ -59,7 +59,7 @@ cell_create( int x, int y, int row, int col )
         cell->row = row;
         cell->col = col;
 
-        // This should be made dyanmic in the future.
+        // This should be made dynamic in the future.
         cell->box = ( SDL_Rect ) { .x = x + CELL_PADDING, .y = y + CELL_PADDING, .w = CELL_BOX_WIDTH, .h = CELL_BOX_HEIGHT };
         cell->color = &highlight_color;
 
