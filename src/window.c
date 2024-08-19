@@ -15,6 +15,7 @@
 Connector_Chain*        chain;
 Board*                  board;
 label_t*                score;
+Tile*                   result_tile;
 
 void
 window_init( Window* self )
@@ -74,6 +75,12 @@ window_handle_events( Window* self )
                 {
                         SDL_GetMouseState( &config->mouse_x, &config->mouse_y );
                         chain->check_neighbor( chain );
+
+                        if ( chain->total > 0 )
+                        {
+                                int             correlate_index = num_set_get_lowest_square( chain->total );
+                                result_tile = &tile_set[ correlate_index ];
+                        }
                 }
                 
                 if ( event.type == SDL_MOUSEBUTTONDOWN )
@@ -143,6 +150,8 @@ window_handle_events( Window* self )
                         snprintf( str, size + 1, "Score: %d", config->playerScore );
 
                         score->update( score, str );
+
+                        result_tile = NULL;
                 }
         }
 }
@@ -171,6 +180,13 @@ window_draw( Window* self )
         chain->render( chain );
         board->render( board );
         score->render( score );
+        
+        if ( result_tile )
+        {
+                result_tile->box.x = 600;
+                result_tile->box.y = 20;
+                result_tile->render( result_tile );
+        }
 
         /* Render the display */
 
