@@ -13,9 +13,11 @@ main( int argc, char* argv[] )
 {
         main_init();
 
-        Window*         window = window_create();
+        window = window_create();
 
         window->run( window );
+
+        /*window->destroy( window );*/
 
         return 0;
 }

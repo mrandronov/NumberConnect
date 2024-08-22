@@ -1,5 +1,4 @@
-
-#include "game_screen.h"
+#include "screen.h"
 #include "color.h"
 #include "connector.h"
 
@@ -9,7 +8,7 @@ label_t*                score;
 Tile*                   result_tile;
 
 void
-game_screen_draw( Game_Screen* self )
+game_screen_draw( Screen* self )
 {
         chain->render( chain );
         board->render( board );
@@ -21,15 +20,13 @@ game_screen_draw( Game_Screen* self )
                 result_tile->box.y = 20;
                 result_tile->render( result_tile );
         }
-
 }
 
 void
-game_screen_handle_event( Game_Screen* self, SDL_Event* event )
+game_screen_handle_event( Screen* self, SDL_Event* event )
 {
         if ( event->type == SDL_MOUSEMOTION )
         {
-                SDL_GetMouseState( &config->mouse_x, &config->mouse_y );
                 chain->check_neighbor( chain );
 
                 if ( chain->total > 0 )
@@ -112,7 +109,7 @@ game_screen_handle_event( Game_Screen* self, SDL_Event* event )
 }
 
 void
-game_screen_destroy( Game_Screen* self )
+game_screen_destroy( Screen* self )
 {
         chain->destroy( chain );
         board->destroy( board );
@@ -123,10 +120,10 @@ game_screen_destroy( Game_Screen* self )
         self = NULL;
 }
 
-Game_Screen*
+Screen*
 game_screen_create()
 {
-        Game_Screen*            screen = ( Game_Screen* ) malloc( sizeof( Game_Screen ) );
+        Screen*            screen = ( Screen* ) malloc( sizeof( Screen ) );
 
         screen->render = game_screen_draw;
         screen->handle_event = game_screen_handle_event;

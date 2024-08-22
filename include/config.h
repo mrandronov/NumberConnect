@@ -4,7 +4,6 @@
 #include <stdbool.h>
 
 #include "SDL_render.h"
-#include "SDL_video.h"
 
 typedef struct
 {

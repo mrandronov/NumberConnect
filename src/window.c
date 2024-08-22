@@ -11,6 +11,7 @@
 #include "connector.h"
 #include "error.h"
 #include "color.h"
+#include "screen.h"
 
 void
 window_init( Window* self )
@@ -44,6 +45,9 @@ window_init( Window* self )
 
         // SDL2 needs to be initialized to create a game_screen struct
         self->game_screen = game_screen_create();
+        self->menu_screen = menu_screen_create();
+
+        self->current_screen = self->menu_screen;
 }
 
 void
@@ -64,8 +68,13 @@ window_handle_events( Window* self )
                                 config->is_game_running = false;
                         }
                 }
+
+                if ( event.type == SDL_MOUSEMOTION )
+                {
+                        SDL_GetMouseState( &config->mouse_x, &config->mouse_y );
+                }
                 
-                self->game_screen->handle_event( self->game_screen, &event );
+                self->current_screen->handle_event( self->current_screen, &event );
         }
 }
 
@@ -90,7 +99,7 @@ window_draw( Window* self )
         set_color( background );
         SDL_RenderClear( config->renderer );
 
-        self->game_screen->render( self->game_screen );
+        self->current_screen->render( self->current_screen );
 
         /* Render the display */
 
@@ -119,6 +128,7 @@ void
 window_destroy( Window* self )
 {
         self->game_screen->destroy( self->game_screen );
+        self->menu_screen->destroy( self->menu_screen );
 
         SDL_DestroyRenderer( config->renderer );
         config->renderer = NULL;
