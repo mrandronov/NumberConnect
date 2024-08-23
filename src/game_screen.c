@@ -1,3 +1,4 @@
+#include "button.h"
 #include "screen.h"
 #include "color.h"
 #include "connector.h"
@@ -6,6 +7,13 @@ Connector_Chain*        chain;
 Board*                  board;
 label_t*                score;
 Tile*                   result_tile;
+Button*                 exit_button;
+
+void
+return_to_menu( Button* self )
+{
+        window->current_screen = window->menu_screen;
+}
 
 void
 game_screen_draw( Screen* self )
@@ -132,6 +140,7 @@ game_screen_create()
         board = cell_board_create();
         chain = cnctr_chain_create();
         score = label_create( "Score: 0", 175, 60, 48, &white );
+        exit_button = button_create( "exit", 48, 650, 1000, 200, 50, &background, return_to_menu );
 
         return screen;
 }
