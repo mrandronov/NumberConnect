@@ -21,6 +21,7 @@ game_screen_draw( Screen* self )
         chain->render( chain );
         board->render( board );
         score->render( score );
+        exit_button->render( exit_button );
 
         if ( result_tile )
         {
@@ -46,6 +47,8 @@ game_screen_handle_event( Screen* self, SDL_Event* event )
 
         if ( event->type == SDL_MOUSEBUTTONDOWN )
         {
+                exit_button->press( exit_button );
+
                 if ( chain->enabled )
                 {
                         return;
@@ -71,6 +74,8 @@ game_screen_handle_event( Screen* self, SDL_Event* event )
 
         if ( event->type == SDL_MOUSEBUTTONUP )
         {
+                exit_button->unpress( exit_button );
+
                 if ( !chain->enabled )
                 {
                         return;
@@ -140,7 +145,7 @@ game_screen_create()
         board = cell_board_create();
         chain = cnctr_chain_create();
         score = label_create( "Score: 0", 175, 60, 48, &white );
-        exit_button = button_create( "exit", 48, 650, 1000, 200, 50, &background, return_to_menu );
+        exit_button = button_create( "exit", 48, 650, 1000, 150, 50, &default_color, return_to_menu );
 
         return screen;
 }

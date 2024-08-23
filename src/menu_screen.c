@@ -2,6 +2,7 @@
 #include "color.h"
 #include "screen.h"
 
+label_t*        title_label;
 Button*         play_button;
 Button*         options_button;
 Button*         quit_button;
@@ -28,6 +29,7 @@ quit_game_press( Button *self )
 void
 menu_screen_draw( Screen* self )
 {
+        title_label->render( title_label );
         play_button->render( play_button );
         options_button->render( options_button );
         quit_button->render( quit_button );
@@ -66,6 +68,10 @@ Screen*
 menu_screen_create()
 {
         Screen*            screen = ( Screen* ) malloc( sizeof( Screen ) );
+
+        title_label = label_create( "number connect", 450, 550, 64, &white );  
+        title_label->rect.x = 450 - ( title_label->rect.w / 2 );
+        title_label->rect.y = 550 - ( title_label->rect.h / 2 ) - 250;
 
         play_button = button_create( "play", 32, 350, 440, 200, 50, &default_color, play_game_press );
         options_button = button_create( "options", 32, 350, 500, 200, 50, &default_color, options_game_press );
