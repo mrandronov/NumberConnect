@@ -1,6 +1,7 @@
 #include "button.h"
 #include "color.h"
 #include "screen.h"
+#include "sound.h"
 
 label_t*        title_label;
 Button*         play_button;
@@ -73,9 +74,9 @@ menu_screen_create()
         title_label->rect.x = 450 - ( title_label->rect.w / 2 );
         title_label->rect.y = 550 - ( title_label->rect.h / 2 ) - 250;
 
-        play_button = button_create( "play", 32, 350, 440, 200, 50, &default_color, play_game_press );
-        options_button = button_create( "options", 32, 350, 500, 200, 50, &default_color, options_game_press );
-        quit_button = button_create( "quit", 32, 350, 560, 200, 50, &default_color, quit_game_press );
+        play_button = button_create( "play", 32, 350, 440, 200, 50, &default_color, play_game_press, start_game_sound );
+        options_button = button_create( "options", 32, 350, 500, 200, 50, &default_color, options_game_press, button_sound );
+        quit_button = button_create( "quit", 32, 350, 560, 200, 50, &default_color, quit_game_press, button_sound );
 
         screen->render = menu_screen_draw;
         screen->handle_event = menu_screen_handle_event;

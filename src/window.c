@@ -6,17 +6,19 @@
 
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_ttf.h"
+#include "SDL2/SDL_mixer.h"
 
 #include "window.h"
 #include "connector.h"
 #include "error.h"
 #include "color.h"
 #include "screen.h"
+#include "sound.h"
 
 void
 window_init( Window* self )
 {
-        assert_msg( ( SDL_Init( SDL_INIT_VIDEO ) != 0 ), SDL_GetError() );
+        assert_msg( ( SDL_Init( SDL_INIT_VIDEO | SDL_INIT_AUDIO ) != 0 ), SDL_GetError() );
 
         SDL_Window*             window = SDL_CreateWindow( self->title, 
 	                                        SDL_WINDOWPOS_UNDEFINED, 
@@ -35,9 +37,12 @@ window_init( Window* self )
 
         assert_msg( ( TTF_Init() != 0 ), TTF_GetError() );
 
+        assert_msg( ( Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 ), Mix_GetError() );
+
         self->window = window;
         config->renderer = renderer;
 
+        sound_init();
         color_init( config->theme_path );
 
         num_set_init();

@@ -2,6 +2,7 @@
 #include "screen.h"
 #include "color.h"
 #include "connector.h"
+#include "sound.h"
 
 Connector_Chain*        chain;
 Board*                  board;
@@ -118,6 +119,7 @@ game_screen_handle_event( Screen* self, SDL_Event* event )
                 score->update( score, str );
 
                 result_tile = NULL;
+                cell_join_sound->play( cell_join_sound );
         }
 }
 
@@ -145,7 +147,7 @@ game_screen_create()
         board = cell_board_create();
         chain = cnctr_chain_create();
         score = label_create( "Score: 0", 175, 60, 48, &white );
-        exit_button = button_create( "exit", 48, 650, 1000, 150, 50, &default_color, return_to_menu );
+        exit_button = button_create( "exit", 48, 650, 1000, 150, 50, &default_color, return_to_menu, button_sound );
 
         return screen;
 }

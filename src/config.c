@@ -7,6 +7,7 @@ config_init()
         config = ( config_t* ) malloc( sizeof( config_t ) );
 
         config->is_game_running = true;
+        config->is_sound_enabled = true;
 
         config->playerScore = 0;
 

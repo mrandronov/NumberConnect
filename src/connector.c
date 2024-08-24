@@ -4,6 +4,7 @@
 #include "connector.h"
 #include "error.h"
 #include "color.h"
+#include "sound.h"
 
 void
 cnctr_link_draw( Connector_Link* self )
@@ -274,6 +275,7 @@ cnctr_chain_is_next_nghbr( Connector_Chain* self )
 
         add_link_from_cell( self, new_cell );
         new_cell = NULL;
+        cell_connect_sound->play( cell_connect_sound );
 }
 
 void

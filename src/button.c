@@ -33,6 +33,10 @@ button_press( Button* self )
         }
 
         self->is_pressed = true;
+        if ( self->sound != NULL )
+        {
+                self->sound->play( self->sound );
+        }
 }
 
 void
@@ -61,13 +65,14 @@ button_destroy( Button* self )
 }
 
 Button*
-button_create( const char* str, int font_size, int x, int y, int w, int h, SDL_Color* color, void ( *on_press )( Button* self ) )
+button_create( const char* str, int font_size, int x, int y, int w, int h, SDL_Color* color, void ( *on_press )( Button* self ), Sound* sound )
 {
         Button*         self = ( Button* ) malloc( sizeof( Button ) );
         
         self->box = ( SDL_Rect ){ .x = x, .y = y, .w = w, .h = h };
         self->color = color;
         self->label = label_create( str, x, y, font_size, &white );
+        self->sound = sound;
         self->is_pressed = false;
 
         self->render = button_render;

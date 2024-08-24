@@ -8,6 +8,7 @@
 typedef struct
 {
         bool                    is_game_running;
+        bool                    is_sound_enabled;
         int                     playerScore;
         char*                   theme_path;
         char*                   font_path;
