@@ -27,6 +27,12 @@ typedef struct button_t
 
 Button*                 pressed_button;
 
-Button*                 button_create( const char* str, int font_size, int x, int y, int w, int h, SDL_Color* color, void ( *on_press )( Button* self ), Sound* sound );
+Button*                 button_create( const char* str,
+                                        int font_size,
+                                        int x, int y,
+                                        int w, int h,
+                                        SDL_Color* color,
+                                        void ( *on_press )( Button* self ),
+                                        Sound* sound );
 
 #endif /* __BUTTON_LIB_H__ */
