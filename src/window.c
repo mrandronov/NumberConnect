@@ -48,7 +48,8 @@ window_init( Window* self )
         num_set_init();
         tile_set_init();
 
-        // SDL2 needs to be initialized to create a game_screen struct
+        // All visual components are created on screens, so
+        // SDL2 needs to be initialized before creating them.
         self->game_screen = game_screen_create();
         self->menu_screen = menu_screen_create();
 
