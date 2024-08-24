@@ -36,12 +36,27 @@ sound_create( const char* file_path )
 }
 
 void
-sound_init()
+sounds_init()
 {
-        test_sound = sound_create( "./res/interface-1.mp3" );
         start_game_sound = sound_create( "./res/melancholy-ui-chime.mp3" );
         button_sound = sound_create( "./res/button.mp3" );
         cell_connect_sound = sound_create( "./res/button.mp3" );
         cell_join_sound = sound_create( "./res/system-notification.mp3" );
+}
+
+void
+sounds_destroy()
+{
+        start_game_sound->destroy( start_game_sound );
+        start_game_sound = NULL;
+
+        button_sound->destroy( button_sound );
+        button_sound = NULL;
+
+        cell_connect_sound->destroy( cell_connect_sound );
+        cell_connect_sound = NULL;
+
+        cell_join_sound->destroy( cell_join_sound );
+        cell_join_sound = NULL;
 }
 

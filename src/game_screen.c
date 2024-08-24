@@ -129,7 +129,6 @@ game_screen_destroy( Screen* self )
         chain->destroy( chain );
         board->destroy( board );
         score->destroy( score );
-        result_tile->destroy( result_tile );
 
         free( self );
         self = NULL;

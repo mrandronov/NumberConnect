@@ -14,12 +14,12 @@ typedef struct sound_t
         void                    ( *destroy )( struct sound_t* self );
 } Sound;
 
-Sound*          test_sound;
 Sound*          start_game_sound;
 Sound*          button_sound;
 Sound*          cell_connect_sound;
 Sound*          cell_join_sound;
 
-void            sound_init();
+void            sounds_init();
+void            sounds_destroy();
 
 #endif /* __SOUND_LIB_H__ */

@@ -57,6 +57,7 @@ menu_screen_handle_event( Screen* self, SDL_Event* event )
 void
 menu_screen_destroy( Screen* self )
 {
+        title_label->destroy( title_label );
         play_button->destroy( play_button );
         options_button->destroy( options_button );
         quit_button->destroy( quit_button );

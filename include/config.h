@@ -12,6 +12,7 @@ typedef struct
         int                     playerScore;
         char*                   theme_path;
         char*                   font_path;
+
         SDL_Renderer*           renderer;
 
         int                     mouse_x;
@@ -19,7 +20,8 @@ typedef struct
 
 } config_t;
 
-void config_init();
+void                            config_init();
+void                            config_destroy();
 
 extern config_t*                config;
 

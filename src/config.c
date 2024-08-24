@@ -18,3 +18,10 @@ config_init()
         config->mouse_y = 0;
 }
 
+void
+config_destroy()
+{
+        free( config );
+        config = NULL;
+}
+

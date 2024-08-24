@@ -40,12 +40,6 @@ tile_draw( Tile* self )
         self->label->render( self->label );
 }
 
-void
-tile_destroy( Tile* self )
-{
-        self->label->destroy( self->label );
-}
-
 Tile
 tile_init( int index, SDL_Color background_color, SDL_Color* text_color, int font_size )
 {
@@ -62,8 +56,7 @@ tile_init( int index, SDL_Color background_color, SDL_Color* text_color, int fon
                 .label = label, 
                 .box = box, 
                 .background_color = background_color,
-                .render = tile_draw,
-                .destroy = tile_destroy 
+                .render = tile_draw
         };
 }
 

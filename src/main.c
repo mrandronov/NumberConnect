@@ -17,7 +17,7 @@ main( int argc, char* argv[] )
 
         window->run( window );
 
-        /*window->destroy( window );*/
+        window->destroy( window );
 
         return 0;
 }

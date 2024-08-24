@@ -178,8 +178,6 @@ cell_board_destroy( Board* self )
 {
         for ( int i = 0; i < self->height; i++ )
         {
-                self->cells[ i ] = ( Cell* ) malloc( sizeof( Cell ) * BOARD_WIDTH );
-
                 for ( int j = 0; j < self->width; j++ )
                 {
                         Cell*           curr_cell = &self->cells[ i ][ j ];
@@ -187,6 +185,9 @@ cell_board_destroy( Board* self )
                         curr_cell->destroy( curr_cell );
                 }
         }
+
+        free( self );
+        self = NULL;
 }
 
 Board*

@@ -42,7 +42,7 @@ window_init( Window* self )
         self->window = window;
         config->renderer = renderer;
 
-        sound_init();
+        sounds_init();
         color_init( config->theme_path );
 
         num_set_init();
@@ -100,6 +100,8 @@ frame_delay( float start, float fps_cap_in_ms )
 void
 window_draw( Window* self )
 {
+        self->start = SDL_GetPerformanceCounter();
+
         /* Clear the display from previous frame */
 
         set_color( background );
@@ -122,8 +124,6 @@ window_run( Window* self )
         self->init( self );
         while ( config->is_game_running == true )
         {
-                self->start = SDL_GetPerformanceCounter();
-
                 self->handle_events( self );
 
                 self->render( self );
@@ -141,6 +141,9 @@ window_destroy( Window* self )
 
         SDL_DestroyWindow( self->window );
         self->window = NULL;
+
+        sounds_destroy();
+        config_destroy();
 
         TTF_Quit();
         SDL_Quit();

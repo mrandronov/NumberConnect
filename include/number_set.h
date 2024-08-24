@@ -19,7 +19,6 @@ typedef struct tile_t
         SDL_Color       background_color;
 
         void            ( *render )( struct tile_t* self );
-        void            ( *destroy )( struct tile_t* self );
 } Tile;
 
 // Predefine all tiles and reuse them throughout the game
