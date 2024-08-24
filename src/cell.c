@@ -1,7 +1,7 @@
-
 #include "cell.h"
 #include "color.h"
 #include "number_set.h"
+#include "rect.h"
 
 void
 cell_draw( Cell* self )
@@ -11,8 +11,7 @@ cell_draw( Cell* self )
                 self->animation->step( self->animation );
         }
 
-        set_color( *self->color );
-        SDL_RenderFillRect( config->renderer, &self->box );
+        render_rect( &self->box, *self->color );
 
         if ( self->tile )
         {

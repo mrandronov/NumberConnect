@@ -1,16 +1,18 @@
-
 #include "number_set.h"
 #include "cell.h"
 #include "color.h"
+#include "rect.h"
 
 int
 num_set_get_lowest_square( int value )
 {
-        int i = 0;
+        int             i = 0;
+
         while ( num_set[ i ] < value )
         {
                 i++;
         }
+
         return i;
 }
 
@@ -18,6 +20,7 @@ void
 num_set_init()
 {
         int             value = 1;
+
         for ( int i = 0; i < NUM_LIMIT; i++ )
         {
                 value *= 2;
@@ -28,8 +31,7 @@ num_set_init()
 void
 tile_draw( Tile* self )
 {
-        set_color( self->background_color );
-        SDL_RenderFillRect( config->renderer, &self->box );
+        render_rect( &self->box, self->background_color );
 
         // Center the label's position to the background box.
         // We want to lock the label text to the tile.
