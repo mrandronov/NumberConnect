@@ -1,7 +1,7 @@
-#include "number_set.h"
-#include "cell.h"
-#include "color.h"
-#include "rect.h"
+#include "component/number_set.h"
+#include "component/cell.h"
+#include "util/color.h"
+#include "util/rect.h"
 
 int
 num_set_get_lowest_square( int value )

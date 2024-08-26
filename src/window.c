@@ -8,12 +8,12 @@
 #include "SDL2/SDL_ttf.h"
 #include "SDL2/SDL_mixer.h"
 
+#include "component/connector.h"
+#include "screen/screen.h"
+#include "util/error.h"
+#include "util/color.h"
+#include "util/sound.h"
 #include "window.h"
-#include "connector.h"
-#include "error.h"
-#include "color.h"
-#include "screen.h"
-#include "sound.h"
 
 void
 window_init( Window* self )

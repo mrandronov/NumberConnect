@@ -7,7 +7,7 @@
 config_t*       config;
 Cell*           current_cell;
 
-typedef struct cnctr_link_t 
+typedef struct cnctr_link_t
 {
         int             start_x;
         int             start_y;

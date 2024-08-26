@@ -6,7 +6,7 @@
 #include "SDL_video.h"
 
 #include "config.h"
-#include "screen.h"
+#include "screen/screen.h"
 
 config_t*                       config;
 

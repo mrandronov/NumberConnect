@@ -1,8 +1,8 @@
-#include "button.h"
-#include "screen.h"
-#include "color.h"
-#include "connector.h"
-#include "sound.h"
+#include "component/button.h"
+#include "component/connector.h"
+#include "screen/screen.h"
+#include "util/color.h"
+#include "util/sound.h"
 
 Connector_Chain*        chain;
 Board*                  board;

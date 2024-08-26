@@ -1,5 +1,4 @@
-
-#include "error.h"
+#include "util/error.h"
 
 void
 assert_msg( int condition, const char* msg )

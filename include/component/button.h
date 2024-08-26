@@ -2,7 +2,7 @@
 #define __BUTTON_LIB_H__
 
 #include "config.h"
-#include "sound.h"
+#include "util/sound.h"
 #include "window.h"
 #include "label.h"
 

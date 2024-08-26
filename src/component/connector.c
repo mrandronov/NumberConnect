@@ -1,10 +1,9 @@
-
 #include "SDL2_gfxPrimitives.h"
 
-#include "connector.h"
-#include "error.h"
-#include "color.h"
-#include "sound.h"
+#include "component/connector.h"
+#include "util/error.h"
+#include "util/color.h"
+#include "util/sound.h"
 
 void
 cnctr_link_draw( Connector_Link* self )
@@ -35,8 +34,8 @@ cnctr_link_create( Cell* current_cell )
         link->end_y = config->mouse_y;
         link->cell = current_cell;
 
-        link->render = cnctr_link_draw; 
-        link->destroy = cnctr_link_destroy; 
+        link->render = cnctr_link_draw;
+        link->destroy = cnctr_link_destroy;
 
         return link;
 }

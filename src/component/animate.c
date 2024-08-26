@@ -1,5 +1,4 @@
-
-#include "animate.h"
+#include "component/animate.h"
 
 bool
 is_dimension_done( float start, float end, float rate )
@@ -9,7 +8,7 @@ is_dimension_done( float start, float end, float rate )
                 return ( start <= end );
         }
 
-        return ( start >= end ); 
+        return ( start >= end );
 }
 
 float

@@ -1,6 +1,6 @@
-#include "button.h"
-#include "color.h"
-#include "rect.h"
+#include "component/button.h"
+#include "util/color.h"
+#include "util/rect.h"
 
 void
 test_press( Button* self )

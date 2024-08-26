@@ -15,7 +15,7 @@ typedef struct anim_t
 
         float           rate_x;
         float           rate_y;
-        
+
         float           time;
         bool            running;
 

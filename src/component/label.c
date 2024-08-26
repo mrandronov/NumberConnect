@@ -1,9 +1,8 @@
-
 #include "SDL_ttf.h"
 
 #include "config.h"
-#include "label.h"
-#include "error.h"
+#include "component/label.h"
+#include "util/error.h"
 
 config_t*       config;
 
@@ -28,7 +27,7 @@ label_update( label_t* self, const char* str )
         assert_msg( ( SDL_QueryTexture( self->texture,
                                         NULL,
                                         NULL,
-                                        &( self->rect.w ), 
+                                        &( self->rect.w ),
                                         &( self->rect.h ) ) != 0 ),
                         SDL_GetError() );
 

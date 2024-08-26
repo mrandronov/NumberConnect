@@ -1,5 +1,5 @@
-#include "sound.h"
-#include "error.h"
+#include "util/sound.h"
+#include "util/error.h"
 
 void
 sound_play( Sound* self )

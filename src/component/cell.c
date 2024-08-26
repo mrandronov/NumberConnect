@@ -1,7 +1,7 @@
-#include "cell.h"
-#include "color.h"
-#include "number_set.h"
-#include "rect.h"
+#include "component/cell.h"
+#include "component/number_set.h"
+#include "util/color.h"
+#include "util/rect.h"
 
 void
 cell_draw( Cell* self )

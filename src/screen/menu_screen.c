@@ -1,7 +1,7 @@
-#include "button.h"
-#include "color.h"
-#include "screen.h"
-#include "sound.h"
+#include "component/button.h"
+#include "screen/screen.h"
+#include "util/color.h"
+#include "util/sound.h"
 
 label_t*        title_label;
 Button*         play_button;

@@ -1,9 +1,8 @@
-
 #include <stdio.h>
 
 #include "config.h"
-#include "color.h"
-#include "error.h"
+#include "util/color.h"
+#include "util/error.h"
 
 #define THEME_FILE "./themes/Cool_Blue.th"
 #define NUM_THEME_COLORS 5

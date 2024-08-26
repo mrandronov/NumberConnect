@@ -8,7 +8,7 @@
 
 typedef struct _label_t
 {
-    SDL_Texture*        texture; 
+    SDL_Texture*        texture;
     SDL_Rect            rect;
     SDL_Color           color;
     int                 size;

@@ -1,6 +1,6 @@
-#include "button.h"
-#include "color.h"
-#include "screen.h"
+#include "component/button.h"
+#include "screen/screen.h"
+#include "util/color.h"
 
 Button*         exit_button;
 label_t*        volume_option_label;
