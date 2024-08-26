@@ -52,6 +52,7 @@ window_init( Window* self )
         // SDL2 needs to be initialized before creating them.
         self->game_screen = game_screen_create();
         self->menu_screen = menu_screen_create();
+        self->option_screen = option_screen_create();
 
         self->current_screen = self->menu_screen;
 }
@@ -134,6 +135,7 @@ void
 window_destroy( Window* self )
 {
         self->game_screen->destroy( self->game_screen );
+        self->option_screen->destroy( self->option_screen );
         self->menu_screen->destroy( self->menu_screen );
 
         SDL_DestroyRenderer( config->renderer );

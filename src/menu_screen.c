@@ -17,7 +17,7 @@ play_game_press( Button* self )
 void
 options_game_press( Button* self )
 {
-        printf( "The options button was pressed!\n" );
+        window->current_screen = window->option_screen;
 }
 
 void

@@ -11,7 +11,7 @@ Tile*                   result_tile;
 Button*                 exit_button;
 
 void
-return_to_menu( Button* self )
+return_game_to_menu( Button* self )
 {
         window->current_screen = window->menu_screen;
 }
@@ -146,7 +146,7 @@ game_screen_create()
         board = cell_board_create();
         chain = cnctr_chain_create();
         score = label_create( "Score: 0", 175, 60, 48, &white );
-        exit_button = button_create( "exit", 48, 650, 1000, 150, 50, &default_color, return_to_menu, button_sound );
+        exit_button = button_create( "return", 48, 650, 1000, 200, 50, &default_color, return_game_to_menu, button_sound );
 
         return screen;
 }

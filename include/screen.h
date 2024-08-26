@@ -15,6 +15,7 @@ typedef struct screen_t
 } Screen;
 
 Screen*            game_screen_create();
+Screen*            option_screen_create();
 Screen*            menu_screen_create();
 
 #endif /* __GAME_SCREEN_LIB_H__ */

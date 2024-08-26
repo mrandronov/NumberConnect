@@ -25,6 +25,7 @@ typedef struct window_t
         Screen*                 current_screen;
         Screen*                 game_screen;
         Screen*                 menu_screen;
+        Screen*                 option_screen;
 
         void                    ( *init )( struct window_t* self );
         void                    ( *handle_events )( struct window_t* self );
