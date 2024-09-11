@@ -1,3 +1,8 @@
+ # Color Formatting
+CC_GREEN := $(shell echo "\033[92;1m")
+CC_BLUE := $(shell echo "\033[94;1m")
+CC_YELLOW := $(shell echo "\033[93;1m")
+CC_END := $(shell echo "\033[0m")
 
 UNAME := $(shell uname)
 
@@ -31,8 +36,12 @@ $(SRC_DIR)/%.o: $(SRC_DIR)/%.c
 
 all: $(OBJECTS)
 	$(CC) $(CFLAGS) $(LINK_FLAGS) -o $(TARGET) $^
-	@echo "Done!"
+	@echo "$(CC_GREEN)Build done!$(CC_END)"
 
 clean:
 	rm -rf $(OBJECTS) $(TARGET)
+	@echo "$(CC_BLUE)Clean done!$(CC_END)"
+
+count:
+	find ./ -type f \( -iname \*.c -o -iname \*.h -o -iname Makefile \) | xargs wc -l
 
